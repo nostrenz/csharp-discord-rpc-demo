@@ -10,7 +10,6 @@ namespace DiscordRpcDemo
 	public partial class MainWindow : Window
 	{
 		private DiscordRpc.RichPresence presence;
-		private int callbackCalls;
 
 		DiscordRpc.EventHandlers handlers;
 
@@ -28,9 +27,12 @@ namespace DiscordRpcDemo
 		=============================================
 		*/
 
+		/// <summary>
+		/// Initialize the RPC.
+		/// </summary>
+		/// <param name="clientId"></param>
 		private void Initialize(string clientId)
 		{
-			callbackCalls = 0;
 			handlers = new DiscordRpc.EventHandlers();
 
 			handlers.readyCallback = ReadyCallback;
@@ -42,6 +44,9 @@ namespace DiscordRpcDemo
 			this.SetStatusBarMessage("Initialized.");
 		}
 
+		/// <summary>
+		/// Update the presence status from what's in the UI fields.
+		/// </summary>
 		private void UpdatePresence()
 		{
 			presence.details = this.TextBox_details.Text;
@@ -65,6 +70,9 @@ namespace DiscordRpcDemo
 			this.SetStatusBarMessage("Presence updated.");
 		}
 
+		/// <summary>
+		/// Calls ReadyCallback(), DisconnectedCallback(), ErrorCallback().
+		/// </summary>
 		private void RunCallbacks()
 		{
 			DiscordRpc.RunCallbacks();
@@ -72,6 +80,9 @@ namespace DiscordRpcDemo
 			this.SetStatusBarMessage("Rallbacks run.");
 		}
 
+		/// <summary>
+		/// Stop RPC.
+		/// </summary>
 		private void Shutdown()
 		{
 			DiscordRpc.Shutdown();
@@ -79,24 +90,31 @@ namespace DiscordRpcDemo
 			this.SetStatusBarMessage("Shuted down.");
 		}
 
+		/// <summary>
+		/// Called after RunCallbacks() when ready.
+		/// </summary>
 		private void ReadyCallback()
 		{
-			++callbackCalls;
-
 			this.SetStatusBarMessage("Ready.");
 		}
 
+		/// <summary>
+		/// Called after RunCallbacks() in cause of disconnection.
+		/// </summary>
+		/// <param name="errorCode"></param>
+		/// <param name="message"></param>
 		private void DisconnectedCallback(int errorCode, string message)
 		{
-			++callbackCalls;
-
 			this.SetStatusBarMessage(string.Format("Disconnect {0}: {1}", errorCode, message));
 		}
 
+		/// <summary>
+		/// Called after RunCallbacks() in cause of error.
+		/// </summary>
+		/// <param name="errorCode"></param>
+		/// <param name="message"></param>
 		private void ErrorCallback(int errorCode, string message)
 		{
-			++callbackCalls;
-
 			this.SetStatusBarMessage(string.Format("Error {0}: {1}", errorCode, message));
 		}
 
@@ -142,6 +160,10 @@ namespace DiscordRpcDemo
 			}
 
 			this.Initialize(clientId);
+
+			this.Button_RunCallbacks.IsEnabled = true;
+			this.Button_Update.IsEnabled = true;
+			this.Button_Shutdown.IsEnabled = true;
 		}
 
 		/// <summary>
@@ -172,6 +194,10 @@ namespace DiscordRpcDemo
 		private void Button_Shutdown_Click(object sender, RoutedEventArgs e)
 		{
 			this.Shutdown();
+
+			this.Button_RunCallbacks.IsEnabled = false;
+			this.Button_Update.IsEnabled = false;
+			this.Button_Shutdown.IsEnabled = false;
 		}
 	}
 }
