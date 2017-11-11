@@ -5,9 +5,6 @@ namespace DiscordRpcDemo
 	// https://github.com/discordapp/discord-rpc/blob/master/examples/button-clicker/Assets/DiscordRpc.cs
 	public class DiscordRpc
 	{
-		// 32bit Discord RPC DLL
-		const string DDL = "discord-rpc-w32";
-
 		[UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 		public delegate void ReadyCallback();
 
@@ -45,16 +42,16 @@ namespace DiscordRpcDemo
 			public bool instance;
 		}
 
-		[DllImport(DDL, EntryPoint = "Discord_Initialize", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(App.DLL, EntryPoint = "Discord_Initialize", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void Initialize(string applicationId, ref EventHandlers handlers, bool autoRegister, string optionalSteamId);
 
-		[DllImport(DDL, EntryPoint = "Discord_UpdatePresence", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(App.DLL, EntryPoint = "Discord_UpdatePresence", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void UpdatePresence(ref RichPresence presence);
 
-		[DllImport(DDL, EntryPoint = "Discord_RunCallbacks", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(App.DLL, EntryPoint = "Discord_RunCallbacks", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void RunCallbacks();
 
-		[DllImport(DDL, EntryPoint = "Discord_Shutdown", CallingConvention = CallingConvention.Cdecl)]
+		[DllImport(App.DLL, EntryPoint = "Discord_Shutdown", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void Shutdown();
 	}
 }
