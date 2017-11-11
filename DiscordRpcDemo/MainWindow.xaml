@@ -5,17 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscordRpcDemo"
         mc:Ignorable="d"
-        Title="Discord RPC demo" Height="260" Width="525" WindowStyle="ToolWindow" MinHeight="260" MinWidth="400">
+        Title="Discord RPC demo" Height="413" Width="480" MinHeight="413" MinWidth="390" Background="#FF36393E">
 	<Grid>
-		<Button Content="Initialize" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="175" Height="42" Click="Button_Initialize_Click"/>
-		<Button Content="Update" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Width="175" Height="42" Click="Button_Update_Click"/>
-		<Button Content="Shutdown" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="175" Height="42" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click"/>
-		<Button Content="RunCallbacks" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="175" Height="42" Click="Button_RunCallbacks_Click"/>
-		<TextBox x:Name="TextBox_state" Height="23" Margin="190,57,10,0" TextWrapping="Wrap" Text="state" VerticalAlignment="Top" MaxLength="128" MaxLines="1"/>
-		<TextBox x:Name="TextBox_details" Height="23" Margin="190,85,10,0" TextWrapping="Wrap" Text="details" VerticalAlignment="Top" MaxLength="128" MaxLines="1"/>
-		<TextBox x:Name="TextBox_clientId" Height="42" Margin="190,10,10,0" TextWrapping="Wrap" Text="Client ID" VerticalAlignment="Top" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18"/>
-		<StatusBar Height="29" VerticalAlignment="Bottom">
-			<Label x:Name="Label_Status" Content="Enter your client ID then press the Initialize button."/>
+		<Button Content="Initialize" Margin="0,10,18,0" VerticalAlignment="Top" Height="42" Click="Button_Initialize_Click" HorizontalAlignment="Right" Width="136" Background="#FF3CB21A" Foreground="White" BorderBrush="{x:Null}" FontSize="14"/>
+		<Button Content="RunCallbacks" Margin="10,0,0,46" Click="Button_RunCallbacks_Click" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="145" Background="#FFF57F08" Foreground="White" BorderBrush="{x:Null}" FontSize="14"/>
+		<Button Content="Shutdown" Margin="0,0,17,46" RenderTransformOrigin="0.511,-1.601" Click="Button_Shutdown_Click" Height="42" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="145" Background="#FFE82B0D" Foreground="White" BorderBrush="{x:Null}" FontSize="14"/>
+		<Button Content="Update" Margin="160,0,167,46" Click="Button_Update_Click" Height="42" VerticalAlignment="Bottom" Background="#FF337AE0" Foreground="White" BorderBrush="{x:Null}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+		<TextBox x:Name="TextBox_state" Height="23" Margin="111,88,18,0" TextWrapping="Wrap" Text="Playing Solo" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_details" Height="23" Margin="111,60,18,0" TextWrapping="Wrap" Text="In Queue" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_clientId" Height="42" Margin="10,10,159,0" TextWrapping="Wrap" Text="Client ID" VerticalAlignment="Top" MaxLines="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<StatusBar Height="33" VerticalAlignment="Bottom" Background="#FF2F3136" BorderBrush="#FF2F3136">
+			<Label x:Name="Label_Status" Content="Enter your client ID then press the Initialize button." Foreground="#FF72767D"/>
 		</StatusBar>
+		<TextBox x:Name="TextBox_startTimestamp" Height="23" Margin="111,116,18,0" TextWrapping="Wrap" Text="startTimestamp" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_endTimestamp" Height="23" Margin="111,144,18,0" TextWrapping="Wrap" Text="endTimestamp" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_largeImageKey" Height="23" Margin="111,172,18,0" TextWrapping="Wrap" Text="large-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_largeImageText" Height="23" Margin="111,200,18,0" TextWrapping="Wrap" Text="Large image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_smallImageKey" Height="23" Margin="111,228,18,0" TextWrapping="Wrap" Text="small-img-key" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<TextBox x:Name="TextBox_smallImageText" Height="23" Margin="111,256,18,0" TextWrapping="Wrap" Text="Small image text" VerticalAlignment="Top" MaxLength="128" MaxLines="1" VerticalContentAlignment="Center" Background="#FF484B51" BorderBrush="{x:Null}" Foreground="#FFD1D1D1"/>
+		<Label Content="details" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="state" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="96" Height="23" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="startTimestamp" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="endTimestamp" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="largeImageKey" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="largeImageText" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="smallImageKey" HorizontalAlignment="Left" Margin="10,228,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
+		<Label Content="smallImageText" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" Width="96" Height="28" Foreground="#FF8F97A0" FontWeight="Bold" FontSize="11"/>
 	</Grid>
 </Window>

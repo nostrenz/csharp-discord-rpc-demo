@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace DiscordRpcDemo
 {
@@ -16,6 +17,9 @@ namespace DiscordRpcDemo
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			this.TextBox_startTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow).ToString();
+			this.TextBox_endTimestamp.Text = this.DateTimeToTimestamp(DateTime.UtcNow.AddHours(1)).ToString();
 		}
 
 		/*
@@ -27,8 +31,8 @@ namespace DiscordRpcDemo
 		private void Initialize(string clientId)
 		{
 			callbackCalls = 0;
-
 			handlers = new DiscordRpc.EventHandlers();
+
 			handlers.readyCallback = ReadyCallback;
 			handlers.disconnectedCallback += DisconnectedCallback;
 			handlers.errorCallback += ErrorCallback;
@@ -40,8 +44,21 @@ namespace DiscordRpcDemo
 
 		private void UpdatePresence()
 		{
-			presence.state = this.TextBox_state.Text;
 			presence.details = this.TextBox_details.Text;
+			presence.state = this.TextBox_state.Text;
+
+			if (long.TryParse(this.TextBox_startTimestamp.Text, out long startTimestamp)) {
+				presence.startTimestamp = startTimestamp;
+			}
+
+			if (long.TryParse(this.TextBox_endTimestamp.Text, out long endTimestamp)) {
+				presence.endTimestamp = endTimestamp;
+			}
+
+			presence.largeImageKey = this.TextBox_largeImageKey.Text;
+			presence.largeImageText = this.TextBox_largeImageText.Text;
+			presence.smallImageKey = this.TextBox_smallImageKey.Text;
+			presence.smallImageText = this.TextBox_smallImageText.Text;
 
 			DiscordRpc.UpdatePresence(ref presence);
 
@@ -90,6 +107,16 @@ namespace DiscordRpcDemo
 		private void SetStatusBarMessage(string message)
 		{
 			this.Label_Status.Content = message;
+		}
+
+		/// <summary>
+		/// Convert a DateTime object into a timestamp.
+		/// </summary>
+		/// <param name="dt"></param>
+		/// <returns></returns>
+		private long DateTimeToTimestamp(DateTime dt)
+		{
+			return (dt.Ticks - 621355968000000000) / 10000000;
 		}
 
 		/*

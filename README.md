@@ -3,8 +3,7 @@
 A quick demontration of the Discord RPC feature with a simple C# WPF app, made from the Unity demo provided in the official repository.
 
 * Official documentation: https://discordapp.com/developers/docs/rich-presence/how-to
-* Official SDK repository:
-https://github.com/discordapp/discord-rpc
+* Official SDK repository: https://github.com/discordapp/discord-rpc
 
 ## How do I use it?
 
@@ -26,8 +25,9 @@ Give it a nice App name, click the "**Create app**" button, then the "**Enable R
 ### 4 - Mess with it
 
 Copy the **Client ID** at the top of the page and paste it in the **Client ID** field in the app.
-Click "**Initialize**" then "**Update presence**" then "**Run callbacks**" and you should see this below your username and in your Discord profile:
+Click "**Initialize**" then "**Update**" and you should see this below your username and in your Discord profile:
 
 ![Discord Profile](https://raw.githubusercontent.com/nostrenz/cshap-discord-rpc-demo/master/screenshots/profile.png)
 
-Of couse you can change what's in the "**state**" in "**details**" fields, press "**Update presence**" then "**Run callbacks**" and after a few seconds it will be changed in your Discord profile.
+Of couse you can change what's in each fields, press "**Update**" and you'll see it changed on Discord after a few seconds.
+Also, hitting **RunCallbacks** should tells you about errors or disconnections if any.
